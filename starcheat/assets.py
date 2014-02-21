@@ -47,6 +47,17 @@ def read_default_color(species_data):
         color.append([group, species_data[0][group]])
     return color
 
+#function from: http://stackoverflow.com/a/7548779
+def hex_to_rgb(value):
+    value = value.lstrip('#')
+    lv = len(value)
+    if lv == 1:
+        v = int(value, 16)*17
+        return v, v, v
+    if lv == 3:
+        return tuple(int(value[i:i+1], 16)*17 for i in range(0, 3))
+    return tuple(int(value[i:i+lv/3], 16) for i in range(0, lv, lv/3))
+        
 class Assets():
     def __init__(self, db_file, starbound_folder):
         self.starbound_folder = starbound_folder
